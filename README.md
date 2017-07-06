@@ -1,2 +1,2 @@
 # financas-front-end
-Projeto de finanças pessoais
+Front end de um projeto de finanças pessoais
