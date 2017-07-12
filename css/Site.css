@@ -1,0 +1,20 @@
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-bottom: 0px;
+  }
+}
+
+#periodo{
+    padding-top: 15px;
+    /*padding-left: 20%*/
+    font-weight: bold;
+    
+}
+#mesAno{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#realizado-erros{
+  color: lightcoral;
+}
+
