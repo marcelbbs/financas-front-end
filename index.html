@@ -9,6 +9,7 @@
     
 </head>
 <body>
+  
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -102,7 +103,7 @@
         </table>
     </div>
 
-  
+    <div id = "teste"></div>
 	
 <!-- Modal -->
  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
@@ -147,15 +148,30 @@
             <br />
             <p>&copy; @DateTime.Now.Year</p>
         </footer>
-    </div>
-  
-   <script src="https://code.jquery.com/jquery-1.10.2.js"
-            integrity="sha256-it5nQKHTz+34HijZJQkpNBIHsjpV8b6QzMJs9tmOBSo="
-            crossorigin="anonymous"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/realizados.js"></script>
+    </div>    
+
+<!--frameworks-->  
+    <script src="js/jquery/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap/bootstrap.js"></script>
+    <script src="js/bootstrap/bootstrap.js"></script>
+<!--my business-->    
+    <script src="js/abre-realizados.js"></script>
+    <script src="js/abre-tela.js"></script>
+    <script src="js/adiciona-gasto.js"></script>
+    <script src="js/adiciona-realizados.js"></script>
     <script src="js/calculo.js"></script>
-    <script src="js/uteis.js"></script>
-    
+    <script src="js/conjuntosDeDados.js"></script>    
+    <script src="js/realizados.js"></script>
+    <script src="js/uteis.js"></script>    
+<!--teste-->
+    <script type="text/javascript">
+        console.log("testando");
+        var teste = document.querySelector("#teste");      
+        var resposta = obtemGastos();       
+        
+        /*console.log(teste);
+        teste.appendChild(montaSpan("spanteste","12"));*/
+    </script>
+
 </body>
 </html>
