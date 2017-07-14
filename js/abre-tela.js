@@ -3,7 +3,7 @@ var xhr = new XMLHttpRequest();
 
 xhr.addEventListener("load", function(){
     gastos = JSON.parse(xhr.responseText);
-
+ 
     var tabela=document.querySelector("#tabela-gastos-previstos");
 
     for(var i=0;i<gastos.length;i++){
