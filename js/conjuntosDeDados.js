@@ -68,34 +68,3 @@ function mockObtemGastos(){
     gastos.push(gasto2);   
     return gastos;     
 }
-function obtemGastos(){
-    var url="http://cryptic-hollows-48176.herokuapp.com/gasto/1";
-    var xhr = new XMLHttpRequest();    
-    xhr.addEventListener("load", function(){
-        var gasto = JSON.parse(xhr.responseText);  
-        resposta = String(gasto[0].descricao_previsto);
-        teste.appendChild(montaSpan("spanteste",resposta));
-    });
-    xhr.open("GET",url);
-    xhr.send();
-    /*
-    var gasto = {
-        id:"1",
-        descricaoPrevisto : "Alimentação",
-        valorPrevisto : 200.00,
-        realizados:realizados1,
-        totalRealizado: 10.0,
-        saldo: 190.0
-    }
-    var gasto2 = {
-        id:"2",
-        descricaoPrevisto : "Saúde",
-        valorPrevisto : 50.00,
-        realizados:realizados2,
-        totalRealizado: 20.0,
-        saldo: 30.0
-    }
-    gastos.push(gasto1);
-    gastos.push(gasto2);   
-    return gastos;     */
-}

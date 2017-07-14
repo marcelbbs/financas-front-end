@@ -57,9 +57,9 @@
                     <th>Saldo</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="tabela-gastos-previstos">
                 <form id="form-gastos" class="form-control">
-                    <tr id="previsto-e-realizado">
+                    <!--<tr id="previsto-e-realizado">
                         <td class="col-md-4">
 							<input class="form-control"  type="text" placeholder="Digite o nome do gasto" nome="descricao"/>
 						</td>
@@ -91,6 +91,7 @@
                         </td>
                         <td><span id="saldo"></saldo>              
                     </tr>
+                    -->
                 <form>
             </tbody>
 			<tfoot >
@@ -155,23 +156,20 @@
     <script src="js/bootstrap/bootstrap.js"></script>
     <script src="js/bootstrap/bootstrap.js"></script>
 <!--my business-->    
+    <script src="js/conjuntosDeDados.js"></script> 
     <script src="js/abre-realizados.js"></script>
     <script src="js/abre-tela.js"></script>
     <script src="js/adiciona-gasto.js"></script>
     <script src="js/adiciona-realizados.js"></script>
-    <script src="js/calculo.js"></script>
-    <script src="js/conjuntosDeDados.js"></script>    
+    <script src="js/calculo.js"></script>       
     <script src="js/realizados.js"></script>
-    <script src="js/uteis.js"></script>    
-<!--teste-->
-    <script type="text/javascript">
-        console.log("testando");
-        var teste = document.querySelector("#teste");      
-        var resposta = obtemGastos();       
-        
-        /*console.log(teste);
-        teste.appendChild(montaSpan("spanteste","12"));*/
+    <script src="js/gera-html-util.js"></script>    
+<!--teste
+    <script type="text/javascript">        
+        var teste = document.querySelector("#teste"); 
+        var listOfClasses = ["btn","btn-default"];     
+        teste.appendChild(montaBotao(listOfClasses,"modal","#myModal","+"));
     </script>
-
+-->
 </body>
 </html>
