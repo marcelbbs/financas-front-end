@@ -9,11 +9,12 @@ adiciona.addEventListener("click", function(event){
         exibeErros(erros);
         return;
     }
-
+    console.log("Adicionando realizado na tabela:");
+    console.log(  dadosRealizado);
     adicionaRealizadoNaTabela(dadosRealizado);
-    var id = trGastoRealizado.querySelector("#hidden-id-previsto").value;
-    adicionaRealizadoNoConjuntoDeDados(id,dadosRealizado);
 
+    var id = trGastoRealizado.querySelector("#hidden-id-previsto").value;    
+    adicionaRealizadoNoConjuntoDeDados(id,dadosRealizado);
     var resultado=incrementaRealizado(dadosRealizado.valor);
     calculaSaldo(resultado);   
     limpaRealizado();
@@ -75,8 +76,9 @@ function adicionaRealizadoNaTabela(dadosRealizado){
 }
 
 function limpaRealizado(){
-    var formulario = document.querySelector("#form-realizados");
-    formulario.reset();
+    var elForm = document.querySelector("#form-realizados");
+    console.log(elForm);
+    elForm.reset();
         
 }
 

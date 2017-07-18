@@ -1,24 +1,44 @@
-var urlObtemGastos="http://cryptic-hollows-48176.herokuapp.com/gasto/1";
-var xhr = new XMLHttpRequest();    
 
-xhr.addEventListener("load", function(){
-    gastos = JSON.parse(xhr.responseText);
- 
-    var tabela=document.querySelector("#tabela-gastos-previstos");
+function obtemGastosEPopulaTabela(){    
+    var xhr = new XMLHttpRequest();    
 
-    for(var i=0;i<gastos.length;i++){
-        var trPrevisto=criaTrPrevisto(
-            gastos[i].id
-            ,gastos[i].descricao_previsto
-            ,gastos[i].valor_previsto
-            ,gastos[i].total_realizado
-            ,gastos[i].saldo);
-            
-        tabela.appendChild(trPrevisto);
-    }
-});
-xhr.open("GET",urlObtemGastos);
-xhr.send();
+    xhr.addEventListener("load", function(){
+        //testar se voltou 200
+
+        gastos = JSON.parse(xhr.responseText);
+        
+        var tabela=document.querySelector("#tabela-gastos-previstos");
+
+        for(var i=0;i<gastos.length;i++){
+            var trPrevisto=criaTrPrevisto(
+                gastos[i].id
+                ,gastos[i].descricao_previsto
+                ,gastos[i].valor_previsto
+                ,gastos[i].total_realizado
+                ,gastos[i].saldo);
+                
+            tabela.appendChild(trPrevisto);
+        }
+    });
+    xhr.open("GET",urlObtemGastos);
+    xhr.send();
+}
+function obtemMockEPopulaTabela(){
+        var tabela=document.querySelector("#tabela-gastos-previstos");
+        var gastos = mockObtemGastos();
+        for(var i=0;i<gastos.length;i++){
+            var trPrevisto=criaTrPrevisto(
+                gastos[i].id
+                ,gastos[i].descricao_previsto
+                ,gastos[i].valor_previsto
+                ,gastos[i].total_realizado
+                ,gastos[i].saldo);
+            tabela.appendChild(trPrevisto);
+        }
+}
+//descomentar para mock
+//obtemMockEPopulaTabela(); 
+obtemGastosEPopulaTabela();
 
 function populaTabelaDePrevistos(){
     var tdNomePrevisto = document.querySelector("");

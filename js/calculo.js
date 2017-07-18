@@ -11,16 +11,20 @@ tabelaGasto.addEventListener("click",function(event){
 });
 
 function incrementaRealizado(valorRealizado){
-    var spanTotalRealizado = trEditado.querySelector("#total-realizado");
+    var spanTotalRealizado = trGastoRealizado.querySelector("#total-realizado");
     var totalRealizado = parseFloat(spanTotalRealizado.textContent);
     var resultado = totalRealizado + parseFloat(valorRealizado);
     spanTotalRealizado.textContent= resultado.toFixed(2);
     return resultado;
 }
 
-function calculaSaldo(valorRealizado){
-    var spanSaldo = trEditado.querySelector("#saldo");
-    saldo = parseFloat(spanSaldo.textContent);
-    spanSaldo.textContent = saldo+valorRealizado;
+function calculaSaldo(valorRealizado){   
+    var spanSaldo = trGastoRealizado.querySelector("#saldo");    
+    saldo = parseFloat(spanSaldo.textContent);    
+
+    var inputValorPrevisto = trGastoRealizado.querySelector("#input-valor-previsto");
+    valorPrevisto = parseFloat(inputValorPrevisto.value);
+    
+    spanSaldo.textContent = valorPrevisto-valorRealizado;
 }
 

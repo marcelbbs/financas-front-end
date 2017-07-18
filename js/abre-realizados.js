@@ -1,6 +1,7 @@
 var tabelaGasto = document.querySelector("#tabela-gastos");
 tabelaGasto.addEventListener("click",function(event){
-    
+  
+    event.preventDefault();
     if(event.target.tagName=='BUTTON'){
         
         var tr = event.target.parentNode.parentNode;
@@ -13,7 +14,8 @@ tabelaGasto.addEventListener("click",function(event){
             var id = trGastoRealizado.querySelector("#hidden-id-previsto").value;
             var gasto;
             if (gastos.length!=0){
-                gasto=buscaGastoPorId(id);                
+               // gasto=buscaGastoPorIdMock(id); 
+                gasto=buscaGastoPorId(id);
             }
             else{//adiciona novo
                 gasto=obtemNovoGastoDoTr(id,trGastoRealizado);                
@@ -22,14 +24,6 @@ tabelaGasto.addEventListener("click",function(event){
             //limpa tabela de gastos
             limpaTabelaRealizados();
             populaTabelaDeRealizados(gasto.realizados);            
-        }
-    }
-});
-tabelaGasto.addEventListener("blur",function(event){
-    var el = event.target;
-    if (event.target.tagName='INPUT'){
-        if(el.id == "input-nome-previsto"){
-            
         }
     }
 });

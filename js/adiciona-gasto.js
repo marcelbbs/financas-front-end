@@ -1,6 +1,6 @@
 var botaoAddGasto = document.querySelector("#botao-add-gasto");
 
-/*botaoAddGasto.addEventListener("click",function(event){
+botaoAddGasto.addEventListener("click",function(event){
     event.preventDefault();
     var ultimoId = descobreUltimoId();
     var gasto = {
@@ -23,5 +23,5 @@ var botaoAddGasto = document.querySelector("#botao-add-gasto");
 
 function descobreUltimoId(){
     return gastos.length;
-}*/ 
+} 
 

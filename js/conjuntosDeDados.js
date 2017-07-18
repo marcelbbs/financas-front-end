@@ -1,18 +1,37 @@
 //objetos
 var trGastoRealizado=null;
-
 var gastos=[];
-
-
+var urlObtemGastos="http://cryptic-hollows-48176.herokuapp.com/gasto/1";
+var urlObtemRealizado="http://cryptic-hollows-48176.herokuapp.com/gasto/";
 
 //operações
-function buscaGastoPorId(id){
+function buscaGastoPorIdMock(id){
     var retorno = null;
     gastos.forEach(function(gasto) {
         if(id==gasto.id)
             retorno= gasto;
     });
     return retorno;
+}
+
+function buscaGastoPorId(id){
+    var elGasto;    
+    gastos.forEach(function(gasto) {
+        if(id==gasto.id)
+            elGasto= gasto;
+    });
+
+    var args = id + "/realizados";
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET",urlObtemRealizado+args,false);
+    xhr.send();        
+   
+    if(xhr.status==200){
+        gastos.realizados= JSON.parse(xhr.responseText);        
+        return gastos;
+    }else{
+        console.log("falha");
+    }
 }
 
 function adicionaRealizadoNoConjuntoDeDados(id,dadosRealizado){
@@ -25,7 +44,7 @@ function adicionaRealizadoNoConjuntoDeDados(id,dadosRealizado){
 var realizados1=[];
 var realizado1={
     descricao:"Banana",
-    valor:"2.00"
+    valor:"10.00"
 }
 var realizado2={
     descricao:"Pão",
@@ -50,18 +69,18 @@ realizados2.push(realizado4);
 function mockObtemGastos(){
     var gasto1 = {
         id:"1",
-        descricaoPrevisto : "Alimentação",
-        valorPrevisto : 200.00,
+        descricao_previsto : "Alimentação",
+        valor_previsto : 200.00,
         realizados:realizados1,
-        totalRealizado: 10.0,
-        saldo: 190.0
+        total_realizado: 20.0,
+        saldo: 180.0
     }
     var gasto2 = {
         id:"2",
-        descricaoPrevisto : "Saúde",
-        valorPrevisto : 50.00,
+        descricao_previsto : "Saúde",
+        valor_previsto : 50.00,
         realizados:realizados2,
-        totalRealizado: 20.0,
+        total_realizado: 20.0,
         saldo: 30.0
     }
     gastos.push(gasto1);

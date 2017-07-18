@@ -59,7 +59,7 @@
             </thead>
             <tbody id="tabela-gastos-previstos">
                 <form id="form-gastos" class="form-control">
-                    <!--<tr id="previsto-e-realizado">
+                    <!-- conteúdo dinamico<tr id="previsto-e-realizado">
                         <td class="col-md-4">
 							<input class="form-control"  type="text" placeholder="Digite o nome do gasto" nome="descricao"/>
 						</td>
@@ -92,16 +92,17 @@
                         <td><span id="saldo"></saldo>              
                     </tr>
                     -->
-                <form>
+                </form>
             </tbody>
 			<tfoot >
 				<tr>
 					<td colspan="4">
-						<button class="btn btn-sm  btn-default">Adicionar gasto</button>
+						
 					</td>
 				</tr>
 			</tfoot> 
         </table>
+        <button id="botao-add-gasto" class="btn btn-sm  btn-default">Adicionar gasto</button>
     </div>
 
     <div id = "teste"></div>
@@ -118,7 +119,7 @@
                 </div>
                 
                 <div class="modal-body">
-					<form>	
+					<form id="form-realizados">	
 						<label for="realizadoDescricao" >Descrição:</label>
 						<input type="text" id="realizadoDescricao" placeholder="Descrição"/>
 						<label for="realizadoValor">Valor:</label>
@@ -154,16 +155,18 @@
 <!--frameworks-->  
     <script src="js/jquery/jquery-1.10.2.js"></script>
     <script src="js/bootstrap/bootstrap.js"></script>
-    <script src="js/bootstrap/bootstrap.js"></script>
-<!--my business-->    
+  
+<!--my business--> 
+    <script src="js/gera-html-util.js"></script>       
     <script src="js/conjuntosDeDados.js"></script> 
     <script src="js/abre-realizados.js"></script>
     <script src="js/abre-tela.js"></script>
     <script src="js/adiciona-gasto.js"></script>
     <script src="js/adiciona-realizados.js"></script>
     <script src="js/calculo.js"></script>       
-    <script src="js/realizados.js"></script>
-    <script src="js/gera-html-util.js"></script>    
+    
+    
+    
 <!--teste
     <script type="text/javascript">        
         var teste = document.querySelector("#teste"); 

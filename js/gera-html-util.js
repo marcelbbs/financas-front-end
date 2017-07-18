@@ -2,7 +2,10 @@ function montaTd(classe,valor){
     var td = document.createElement("td");
     if (classe.length!=0)
         td.classList.add(classe);
-    td.appendChild( valor);
+    if(typeof(valor)== "string")
+        td.textContent=valor;
+    else
+        td.appendChild( valor);
     return td;
 }
 
