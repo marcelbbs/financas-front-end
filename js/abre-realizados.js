@@ -14,8 +14,8 @@ tabelaGasto.addEventListener("click",function(event){
             var id = trGastoRealizado.querySelector("#hidden-id-previsto").value;
             var gasto;
             if (gastos.length!=0){
-               // gasto=buscaGastoPorIdMock(id); 
-                gasto=buscaGastoPorId(id);
+                gasto=buscaGastoPorIdMock(id); 
+                //gasto=buscaGastoPorId(id);
             }
             else{//adiciona novo
                 gasto=obtemNovoGastoDoTr(id,trGastoRealizado);                

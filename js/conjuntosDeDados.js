@@ -1,8 +1,8 @@
 //objetos
 var trGastoRealizado=null;
 var gastos=[];
-var urlObtemGastos="http://cryptic-hollows-48176.herokuapp.com/gasto/1";
-var urlObtemRealizado="http://cryptic-hollows-48176.herokuapp.com/gasto/";
+var urlObtemGastos="http://cryptic-hollows-48176.herokuapp.com/gasto";
+var urlObtemRealizado="/realizados";
 
 //operações
 function buscaGastoPorIdMock(id){
@@ -21,9 +21,9 @@ function buscaGastoPorId(id){
             elGasto= gasto;
     });
 
-    var args = id + "/realizados";
+    var args = id + urlObtemRealizado;
     var xhr = new XMLHttpRequest();
-    xhr.open("GET",urlObtemRealizado+args,false);
+    xhr.open("GET",urlObtemGastos+args,false);
     xhr.send();        
    
     if(xhr.status==200){
@@ -35,7 +35,7 @@ function buscaGastoPorId(id){
 }
 
 function adicionaRealizadoNoConjuntoDeDados(id,dadosRealizado){
-    var gasto = buscaGastoPorId(id);
+    var gasto = buscaGastoPorIdMock(id);
     gasto.realizados.push(dadosRealizado);
 }
 
