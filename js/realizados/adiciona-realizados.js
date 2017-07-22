@@ -48,7 +48,7 @@ function validaDadosRealizado(realizado){
 function montaTrRealizados(realizado){
     var tr = document.createElement("tr");
     var tdDescricao = montaTd("col-xs-8",realizado.descricao);
-    var tdValor = montaTd("col-xs-4",realizado.valor);
+    var tdValor = montaTd("col-xs-4",mvalor(realizado.valor.toString()));
     tr.appendChild(tdDescricao);
     tr.appendChild(tdValor);
     return tr;

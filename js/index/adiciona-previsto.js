@@ -11,7 +11,7 @@ function atualizaSaldoOnBlur(event){
 
 }
 
-function descobreId(l){   
+function descobreId(){   
     var hiddenId=trGastoRealizado.querySelector("#hidden-id-previsto");
     return hiddenId.value;
 }
@@ -23,3 +23,14 @@ tabela.addEventListener("keypress",function(event){
         mascara(el,mvalor);
     }
 });
+
+function calculaSaldoEAtualiza(valorRealizado){   
+    var spanSaldo = trGastoRealizado.querySelector("#saldo");    
+    saldo = parseFloat(spanSaldo.textContent);    
+
+    var inputValorPrevisto = trGastoRealizado.querySelector("#input-valor-previsto");
+    valorPrevisto = parseFloat(inputValorPrevisto.value);
+    
+    spanSaldo.textContent = valorPrevisto-valorRealizado;
+    return saldo;
+}
