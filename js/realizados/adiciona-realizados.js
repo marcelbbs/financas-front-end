@@ -20,15 +20,24 @@ adiciona.addEventListener("click", function(event){
     var id = trGastoRealizado.querySelector("#hidden-id-previsto").value;    
     adicionaRealizadoNoConjuntoDeDados(id,dadosRealizado);
 
-    var resultado=incrementaRealizado(dadosRealizado.valor);
-    calculaSaldo(resultado);   
+    var vlTotalRealizado=incrementaRealizado(dadosRealizado.valor);
+    var vlPrevisto = obtemValorPrevisto();
+    var saldo = calculaSaldo(vlTotalRealizado,vlPrevisto);
+    
+    atualizaSaldoNaTela(saldo);
+    
     limpaRealizado();
 });
+
+function obtemValorPrevisto(){
+    var inputValorPrevisto = trGastoRealizado.querySelector("#input-valor-previsto").value;
+    return parseMoedaToFloat(inputValorPrevisto);
+}
 
 function obtemDadosRealizado(){
     var realizado ={
         descricao: document.querySelector("#realizadoDescricao").value,
-        valor: document.querySelector("#realizadoValor").value
+        valor: parseMoedaToFloat(document.querySelector("#realizadoValor").value)
     }
     return realizado; 
 }
@@ -48,7 +57,7 @@ function validaDadosRealizado(realizado){
 function montaTrRealizados(realizado){
     var tr = document.createElement("tr");
     var tdDescricao = montaTd("col-xs-8",realizado.descricao);
-    var tdValor = montaTd("col-xs-4",mvalor(realizado.valor.toString()));
+    var tdValor = montaTd("col-xs-4",parseFloatToMoeda(realizado.valor.toString()));
     tr.appendChild(tdDescricao);
     tr.appendChild(tdValor);
     return tr;
@@ -60,13 +69,9 @@ function exibeErros(erros){
     exibeMensagemErroNoUl(ul,erros);   
 }
 
-function calculaSaldo(valorRealizado){
+function atualizaSaldoNaTela(valorSaldo){
     var spanSaldo = trGastoRealizado.querySelector("#saldo");
-    saldo = parseMoedaToFloat(spanSaldo.textContent);
-    console.log("saldo:"+saldo);
-    valorRealizado = parseMoedaToFloat(valorRealizado);
-    var resultado= saldo-valorRealizado;
-    spanSaldo.textContent = mvalor(resultado.toString());
+    spanSaldo.textContent = mvalor(valorSaldo.toString());
 }
 
 function incrementaRealizado(valor){
@@ -86,8 +91,6 @@ function adicionaRealizadoNaTabela(dadosRealizado){
 
 function limpaRealizado(){
     var elForm = document.querySelector("#form-realizados");
-  
-    elForm.reset();
-        
+    elForm.reset();        
 }
 

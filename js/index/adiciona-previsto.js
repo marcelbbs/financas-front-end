@@ -3,7 +3,7 @@ function atualizaSaldoOnBlur(event){
     var valorRealizado = trGastoRealizado.querySelector("#total-realizado").textContent;        
     
 
-    var saldo = calculaSaldoEAtualiza(parseFloat(valorRealizado));
+    var saldo = calculaSaldoEAtualiza(parseMoedaToFloat(valorRealizado));
 
     /*var id =  descobreId(this);
 
@@ -26,7 +26,7 @@ tabela.addEventListener("keypress",function(event){
 
 function calculaSaldoEAtualiza(valorRealizado){   
     var spanSaldo = trGastoRealizado.querySelector("#saldo");    
-    saldo = parseFloat(spanSaldo.textContent);    
+    saldo = parseMoedaToFloat(spanSaldo.textContent);    
 
     var inputValorPrevisto = trGastoRealizado.querySelector("#input-valor-previsto");
     valorPrevisto = parseFloat(inputValorPrevisto.value);

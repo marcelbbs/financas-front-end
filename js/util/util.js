@@ -96,11 +96,25 @@ function mvalor(v) {
   //  v = v.replace(/(\d)(\d{5})$/, "$1.$2");//coloca o ponto dos milhares
 
     v = v.replace(/(\d)(\d{2})$/, "$1,$2");//coloca a virgula antes dos 2 últimos dígitos
+
     return v;
+}
+function parseFloatToMoeda(v){
+    if(!v.includes(".00"))
+        v = v+".00";
+    return mvalor(v);
 }
 
 function parseMoedaToFloat(v){
-    v = v.toString().replace(",",".");
+    var ehTipoString = typeof(v);
+    if(ehTipoString!="string")
+        v = v.toString();
+    var temVirgula = v.includes(",");
+    if(temVirgula){
+        v = v.replace(",",".");
+    }else{
+        v = v + ".00";
+    }    
     return parseFloat(v);
 }
 
