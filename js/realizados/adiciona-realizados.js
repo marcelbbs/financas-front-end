@@ -22,7 +22,7 @@ adiciona.addEventListener("click", function(event){
 
     var vlTotalRealizado=incrementaRealizado(dadosRealizado.valor);
     var vlPrevisto = obtemValorPrevisto();
-    var saldo = calculaSaldo(vlTotalRealizado,vlPrevisto);
+    var saldo = calculaSaldo(vlPrevisto,vlTotalRealizado);
     
     atualizaSaldoNaTela(saldo);
     
@@ -58,6 +58,7 @@ function montaTrRealizados(realizado){
     var tr = document.createElement("tr");
     var tdDescricao = montaTd("col-xs-8",realizado.descricao);
     var tdValor = montaTd("col-xs-4",parseFloatToMoeda(realizado.valor.toString()));
+    
     tr.appendChild(tdDescricao);
     tr.appendChild(tdValor);
     return tr;
@@ -71,7 +72,7 @@ function exibeErros(erros){
 
 function atualizaSaldoNaTela(valorSaldo){
     var spanSaldo = trGastoRealizado.querySelector("#saldo");
-    spanSaldo.textContent = mvalor(valorSaldo.toString());
+    spanSaldo.textContent = parseFloatToMoeda(valorSaldo.toString());
 }
 
 function incrementaRealizado(valor){
@@ -79,7 +80,8 @@ function incrementaRealizado(valor){
     var totalRealizado = parseMoedaToFloat(spanTotalRealizado.textContent);
     valor = parseMoedaToFloat(valor);
     var resultado = totalRealizado + valor;
-    spanTotalRealizado.textContent= mvalor(resultado.toString());
+    resultado = resultado.toFixed(2);
+    spanTotalRealizado.textContent=parseFloatToMoeda( resultado.toString());
     return resultado;
 }
 

@@ -93,6 +93,31 @@ function mockObtemGastos(){
     return gastos;     
 }
 
+function mockObtemGastosComMesAno(){
+    var gasto1 = {
+        id:"1",
+        descricao_previsto : "Alimentação",
+        valor_previsto : 200.00,
+        realizados:realizados1,
+        total_realizado: 20.00,
+        saldo: 180.00,
+        mesAno: 82017
+    }
+    var gasto2 = {
+        id:"2",
+        descricao_previsto : "Saúde",
+        valor_previsto : 50.00,
+        realizados:realizados2,
+        total_realizado: 20.00,
+        saldo: 30.00,
+        mesAno: 82017
+    }
+    gastos.push(gasto1);
+    gastos.push(gasto2);   
+    return gastos;     
+}
+
+
 function mockAtualizaSaldo(id,saldo){
 
 }

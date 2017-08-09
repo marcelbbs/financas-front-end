@@ -39,9 +39,11 @@
             <div class="page-header">
                 <h2>Previsão de Gastos</h2>
                 <div id="periodo">
-                    <button type="button" class="btn btn-primary"><<</button>
-                    <span id="mesAno" class="border-top-0">Junho  /  2017</span>
-                    <button type="button" class="btn btn-primary">>></button>
+                    <button type="button" id="mes-anterior" class="btn btn-primary"><<</button>
+                    <div id="divMesAno">
+                        <span id="mesAno" class="border-top-0">Dezembro / 2017</span>
+                    </div>
+                    <button type="button" id="mes-proximo" class="btn btn-primary">>></button>
                 </div>
             </div>
         </div>
@@ -163,6 +165,7 @@
     <script src="js/index/adiciona-previsto.js"></script>
     <script src="js/index/abre-tela.js"></script>
     <script src="js/index/adiciona-gasto.js"></script>
-    <script src="js/realizados/adiciona-realizados.js"></script>      
+    <script src="js/realizados/adiciona-realizados.js"></script>    
+    <script src ="js/index/navega-mes.js"></script>  
 </body>
 </html>

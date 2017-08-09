@@ -21,3 +21,12 @@
 .btnrealizado{
   margin-left: 10px;
 }
+
+#divMesAno{
+  margin-left:9px;   
+  display: inline-block;
+}
+#mes-proximo{
+  position:absolute;
+  left: 300px;
+}

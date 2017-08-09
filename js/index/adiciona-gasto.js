@@ -16,9 +16,7 @@ botaoAddGasto.addEventListener("click",function(event){
                         ,gasto.saldo);
     gastos.push(gasto);
     var tabela=document.querySelector("#tabela-gastos-previstos");
-    tabela.appendChild(tr);
-
-    
+    tabela.appendChild(tr);    
 });
 
 function descobreUltimoId(){

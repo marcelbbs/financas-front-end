@@ -100,9 +100,10 @@ function mvalor(v) {
     return v;
 }
 function parseFloatToMoeda(v){
-    if(!v.includes(".00"))
+    if(!v.toString().includes("."))
         v = v+".00";
-    return mvalor(v);
+    v = v.replace(".",",");
+    return v;
 }
 
 function parseMoedaToFloat(v){
@@ -116,5 +117,19 @@ function parseMoedaToFloat(v){
         v = v + ".00";
     }    
     return parseFloat(v);
+}
+//meses
+var meses = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto"
+        ,"Setembro","Outubro","Novembro","Dezembro"];
+
+function getDescricaoMes(num){   
+    if(num==12){
+        return "Janeiro";
+    } 
+    return meses[num];
+}
+
+function descobreIndiceMes(mes){
+    return meses.indexOf(mes);
 }
 

@@ -1,14 +1,14 @@
-function atualizaSaldoOnBlur(event){        
-    trGastoRealizado = event.target.parentNode.parentNode;
-    var valorRealizado = trGastoRealizado.querySelector("#total-realizado").textContent;        
+function atualizaSaldoOnBlur(event){  
     
+    var inputSelec = event.target;
+    if(inputSelec.name == "valor-previsto"){
+        trGastoRealizado = event.target.parentNode.parentNode;
+        var valorRealizado = trGastoRealizado.querySelector("#total-realizado").textContent;
 
-    var saldo = calculaSaldoEAtualiza(parseMoedaToFloat(valorRealizado));
-
-    /*var id =  descobreId(this);
-
-    atualizaSaldo(saldo);*/
-
+        var saldo = calculaSaldoEAtualiza(parseMoedaToFloat(valorRealizado));
+        /*var id =  descobreId(this);
+        atualizaSaldo(saldo);*/
+    }
 }
 
 function descobreId(){   
@@ -19,7 +19,7 @@ function descobreId(){
 var tabela = document.querySelector("#tabela-gastos-previstos");
 tabela.addEventListener("keypress",function(event){
     var el = event.target;
-    if (el.id="input-valor-previsto"){
+    if (el.id=="input-valor-previsto"){
         mascara(el,mvalor);
     }
 });
@@ -31,6 +31,6 @@ function calculaSaldoEAtualiza(valorRealizado){
     var inputValorPrevisto = trGastoRealizado.querySelector("#input-valor-previsto");
     valorPrevisto = parseFloat(inputValorPrevisto.value);
     
-    spanSaldo.textContent = valorPrevisto-valorRealizado;
+    spanSaldo.textContent = parseFloatToMoeda(calculaSaldo(valorPrevisto,valorRealizado));
     return saldo;
 }
