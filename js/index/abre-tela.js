@@ -10,12 +10,19 @@ function obtemGastosEPopulaTabela(){
 
     obtemGastos(xhr);
 }
-function obtemMockEPopulaTabela(){       
-    var gastos = mockObtemGastos();
+//function obtemMockEPopulaTabela(){       
+function obtemMockEPopulaTabela(mes,ano){       
+    //var gastos = mockObtemGastos();
+    var gastos = mockObtemGastos(mes,ano);
     carregaTabelaGastos(gastos);
 }
+
+var mes;
+var ano;
+atualizaMesAno();
 //descomentar para mock
-obtemMockEPopulaTabela(); 
+//obtemMockEPopulaTabela(); 
+obtemMockEPopulaTabela(mes,ano); 
 //obtemGastosEPopulaTabela();
 
 function carregaTabelaGastos(gastos){
@@ -73,3 +80,19 @@ function criaTrPrevisto(id,nomeGasto,valorPrevisto,totalRealizado,saldo){
     return trPrevisto;
 }
 
+function descobreMesAnoAtual(){
+    var currentTime = new Date();
+    var idMes = currentTime.getMonth();
+    mes = idMes;
+    var dsMes = getDescricaoMes(idMes);
+    var idAno = currentTime.getUTCFullYear();
+    ano = idAno;
+    var retorno = dsMes + ' / ' + ano;
+    return retorno; 
+}
+
+function atualizaMesAno(){
+    var spanMesAno = document.querySelector("#mesAno");
+    var mesAno = descobreMesAnoAtual();
+    spanMesAno.textContent = mesAno;
+}
