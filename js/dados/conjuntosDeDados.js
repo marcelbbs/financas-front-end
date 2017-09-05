@@ -35,6 +35,21 @@ function buscaGastoPorId(id){
     }
 }
 
+function adicionaGastoPrevisto(id){
+    var url = urlObtemGastos + "/" + id;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", url,true);
+    xhr.addEventListener("load", function(){
+        if(xhr.status ==200){
+            console.log("incluído");
+        }else{
+            console.log("falha ao incluir");
+        }
+    })
+    xhr.send();   
+}
+
+
 function adicionaRealizadoNoConjuntoDeDados(id,dadosRealizado){
     var gasto = buscaGastoPorIdMock(id);
     gasto.realizados.push(dadosRealizado);
@@ -93,7 +108,7 @@ function mockObtemGastos(){
     return gastos;     
 }
 
-function mockObtemGastosComMesAno(){
+function mockObtemGastosComMesAno(mes,ano){
     var gasto1 = {
         id:"1",
         descricao_previsto : "Alimentação",
@@ -101,7 +116,7 @@ function mockObtemGastosComMesAno(){
         realizados:realizados1,
         total_realizado: 20.00,
         saldo: 180.00,
-        mesAno: 82017
+        mesAno: 92017
     }
     var gasto2 = {
         id:"2",
@@ -110,7 +125,7 @@ function mockObtemGastosComMesAno(){
         realizados:realizados2,
         total_realizado: 20.00,
         saldo: 30.00,
-        mesAno: 82017
+        mesAno: 92017
     }
     gastos.push(gasto1);
     gastos.push(gasto2);   

@@ -15,7 +15,7 @@ function descobreId(){
     var hiddenId=trGastoRealizado.querySelector("#hidden-id-previsto");
     return hiddenId.value;
 }
-
+// listener
 var tabela = document.querySelector("#tabela-gastos-previstos");
 tabela.addEventListener("keypress",function(event){
     var el = event.target;

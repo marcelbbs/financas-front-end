@@ -13,7 +13,7 @@ function obtemGastosEPopulaTabela(){
 //function obtemMockEPopulaTabela(){       
 function obtemMockEPopulaTabela(mes,ano){       
     //var gastos = mockObtemGastos();
-    var gastos = mockObtemGastos(mes,ano);
+    var gastos = mockObtemGastosComMesAno(mes,ano);
     carregaTabelaGastos(gastos);
 }
 
