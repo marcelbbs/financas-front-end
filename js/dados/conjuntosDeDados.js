@@ -4,6 +4,7 @@ var gastos=[];
 var urlObtemGastos="http://cryptic-hollows-48176.herokuapp.com/gasto";
 var urlObtemRealizado="/realizados";
 var tabela=null;
+var mock = false;
 
 //operações
 function buscaGastoPorIdMock(id){
@@ -37,16 +38,7 @@ function buscaGastoPorId(id){
 
 function adicionaGastoPrevisto(id){
     var url = urlObtemGastos + "/" + id;
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", url,true);
-    xhr.addEventListener("load", function(){
-        if(xhr.status ==200){
-            console.log("incluído");
-        }else{
-            console.log("falha ao incluir");
-        }
-    })
-    xhr.send();   
+   // doPost(url,)   
 }
 
 
@@ -108,7 +100,7 @@ function mockObtemGastos(){
     return gastos;     
 }
 
-function mockObtemGastosComMesAno(mes,ano){
+function mockObtemGastosComMesAno(mes,ano,func){
     var gasto1 = {
         id:"1",
         descricao_previsto : "Alimentação",
@@ -129,7 +121,7 @@ function mockObtemGastosComMesAno(mes,ano){
     }
     gastos.push(gasto1);
     gastos.push(gasto2);   
-    return gastos;     
+    func(gastos) ;     
 }
 
 

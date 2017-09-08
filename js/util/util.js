@@ -133,3 +133,23 @@ function descobreIndiceMes(mes){
     return meses.indexOf(mes);
 }
 
+//to integration
+function doHttp(op,url,callSuccess,callError){
+    var xhr = new XMLHttpRequest();
+    xhr.open(op, url,true);
+    xhr.addEventListener("load", function(){
+        if(xhr.status ==200){
+            callSuccess(xhr);
+        }else{
+            callError(xhr);
+        }
+    })
+    xhr.send();   
+}
+function doPost(url,callSuccess,callError){
+    doHttp("POST",url,callSuccess,callError);
+}
+
+function doGet(url,callSuccess,callError){
+    doHttp("GET",url,callSuccess,callError);
+}

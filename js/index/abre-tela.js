@@ -1,5 +1,5 @@
 
-function obtemGastosEPopulaTabela(){    
+/*function obtemGastosEPopulaTabela(){    
     var xhr = new XMLHttpRequest();    
 
     xhr.addEventListener("load", function(){
@@ -9,7 +9,21 @@ function obtemGastosEPopulaTabela(){
     });
 
     obtemGastos(xhr);
+}*/
+mock = false;
+
+function obtemGastosEPopulaTabela(){    
+    if (!mock)
+        doGet(urlObtemGastos,populaTabela,"");
+    else
+        mockObtemGastosComMesAno(mes,ano,carregaTabelaGastos);            
 }
+
+function populaTabela(xhr){
+    var gastos = JSON.parse(xhr.responseText);
+    carregaTabelaGastos(gastos);
+}
+
 //function obtemMockEPopulaTabela(){       
 function obtemMockEPopulaTabela(mes,ano){       
     //var gastos = mockObtemGastos();
@@ -22,8 +36,8 @@ var ano;
 atualizaMesAno();
 //descomentar para mock
 //obtemMockEPopulaTabela(); 
-obtemMockEPopulaTabela(mes,ano); 
-//obtemGastosEPopulaTabela();
+//obtemMockEPopulaTabela(mes,ano); 
+obtemGastosEPopulaTabela();
 
 function carregaTabelaGastos(gastos){
     tabela=document.querySelector("#tabela-gastos-previstos");
