@@ -4,7 +4,8 @@ var gastos=[];
 var urlObtemGastos="http://cryptic-hollows-48176.herokuapp.com/gasto";
 var urlObtemRealizado="/realizados";
 var tabela=null;
-var mock = false;
+var mock = true;
+var usuario = "teste";
 
 //operações
 function buscaGastoPorIdMock(id){
@@ -36,18 +37,12 @@ function buscaGastoPorId(id){
     }
 }
 
-function adicionaGastoPrevisto(id){
-    var url = urlObtemGastos + "/" + id;
-   // doPost(url,)   
-}
-
-
 function adicionaRealizadoNoConjuntoDeDados(id,dadosRealizado){
     var gasto = buscaGastoPorIdMock(id);
     gasto.realizados.push(dadosRealizado);
 }
 
-//mocks
+//mocks 
 
 var realizados1=[];
 var realizado1={
@@ -73,12 +68,9 @@ var realizado4={
 realizados2.push(realizado3);
 realizados2.push(realizado4);
 
-function obtemGastos(xhr){
-    xhr.open("GET",urlObtemGastos);
-    xhr.send();
-}
 
 function mockObtemGastos(){
+    gastos=[];
     var gasto1 = {
         id:"1",
         descricao_previsto : "Alimentação",
@@ -100,7 +92,8 @@ function mockObtemGastos(){
     return gastos;     
 }
 
-function mockObtemGastosComMesAno(mes,ano,func){
+function mockObtemGastosComMesAno(){
+    gastos=[];
     var gasto1 = {
         id:"1",
         descricao_previsto : "Alimentação",
@@ -120,11 +113,25 @@ function mockObtemGastosComMesAno(mes,ano,func){
         mesAno: 92017
     }
     gastos.push(gasto1);
-    gastos.push(gasto2);   
-    func(gastos) ;     
+    gastos.push(gasto2);
+    //console.log(JSON.stringify(gastos));   
+    return gastos ;     
 }
 
 
 function mockAtualizaSaldo(id,saldo){
 
+}
+
+
+function obtemGastos(mes,ano,usuario,callSuccess,callError){    
+    if (!mock){
+       var params="?mes=" +mes 
+                    + "&ano="+ano+"&usuario="+usuario;     
+        doGet(urlObtemGastos,params,callSuccess,callError);
+    }
+    else   {
+        var gastos = mockObtemGastosComMesAno();
+        callSuccess(gastos);
+    }
 }

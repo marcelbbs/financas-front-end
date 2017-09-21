@@ -43,7 +43,7 @@ function montaInput(classe,tipo,placeholder,nome,id,valor,padrao){
     if(id.length!=0){
         el.id=id;
     }
-    if(valor.length!=0){
+    if(valor!=null&&valor.length!=0){
         el.value=valor;
     }
     if(padrao.length!=0){
@@ -134,22 +134,30 @@ function descobreIndiceMes(mes){
 }
 
 //to integration
-function doHttp(op,url,callSuccess,callError){
+function doHttp(op,url,params,callSuccess,callError){
     var xhr = new XMLHttpRequest();
+
     xhr.open(op, url,true);
+    
     xhr.addEventListener("load", function(){
         if(xhr.status ==200){
-            callSuccess(xhr);
+            callSuccess(xhr.responseText);
         }else{
             callError(xhr);
         }
     })
-    xhr.send();   
+    if(params.length==0)
+        params=null;
+    
+    xhr.send(params);   
+    
 }
-function doPost(url,callSuccess,callError){
-    doHttp("POST",url,callSuccess,callError);
+function doPost(url,params,callSuccess,callError){
+    doHttp("POST",url,params,callSuccess,callError);
 }
 
-function doGet(url,callSuccess,callError){
-    doHttp("GET",url,callSuccess,callError);
+function doGet(url,params,callSuccess,callError){
+    url += params;
+    console.log(url);
+    doHttp("GET",url,params,callSuccess,callError);
 }

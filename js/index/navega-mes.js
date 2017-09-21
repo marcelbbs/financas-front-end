@@ -1,3 +1,4 @@
+//Botão do próximo mês
 var btnProxMes = document.querySelector("#mes-proximo");
 
 btnProxMes.addEventListener("click",function(){   
@@ -5,6 +6,12 @@ btnProxMes.addEventListener("click",function(){
     var mesAno = spanMesAno.textContent;
     var proximoMesAno = getDescricaoProximoMesAno(mesAno);
     spanMesAno.textContent = proximoMesAno; 
+    //extrai o prox mes e ano 
+    var arrayMesAno = proximoMesAno.split("/");
+    var proxMes = descobreIndiceMes(arrayMesAno[0].trim());
+    var proxAno = arrayMesAno[1].trim();
+    //consulta gastos do mes/ano e atualiza a tela
+    obtemGastos(proxMes,proxAno,usuario,carregaTabelaGastos,"");
 });
 
 function getDescricaoProximoMesAno(mesAno){
@@ -21,6 +28,7 @@ function getDescricaoProximoMesAno(mesAno){
     return descricaoProxMes + " / " + proximoAno;
 }
 
+//Botão do  mês anterior
 var btmAntMes = document.querySelector("#mes-anterior");
 
 btmAntMes.addEventListener("click", function(){

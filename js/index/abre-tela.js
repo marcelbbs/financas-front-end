@@ -1,76 +1,55 @@
-
-/*function obtemGastosEPopulaTabela(){    
-    var xhr = new XMLHttpRequest();    
-
-    xhr.addEventListener("load", function(){
-        //testar se voltou 200
-        gastos = JSON.parse(xhr.responseText);
-        carregaTabelaGastos(gastos);      
-    });
-
-    obtemGastos(xhr);
-}*/
-mock = false;
-
-function obtemGastosEPopulaTabela(){    
-    if (!mock)
-        doGet(urlObtemGastos,populaTabela,"");
-    else
-        mockObtemGastosComMesAno(mes,ano,carregaTabelaGastos);            
-}
-
-function populaTabela(xhr){
-    var gastos = JSON.parse(xhr.responseText);
-    carregaTabelaGastos(gastos);
-}
-
-//function obtemMockEPopulaTabela(){       
-function obtemMockEPopulaTabela(mes,ano){       
-    //var gastos = mockObtemGastos();
-    var gastos = mockObtemGastosComMesAno(mes,ano);
-    carregaTabelaGastos(gastos);
-}
-
 var mes;
 var ano;
+//Obtem mes/ano atual 
 atualizaMesAno();
-//descomentar para mock
-//obtemMockEPopulaTabela(); 
-//obtemMockEPopulaTabela(mes,ano); 
-obtemGastosEPopulaTabela();
+//obtem gastos do mes/ano e atualiza a tela
+obtemGastos(mes,ano,usuario,carregaTabelaGastos,"");
 
+//funções
 function carregaTabelaGastos(gastos){
     tabela=document.querySelector("#tabela-gastos-previstos");
-
+    tabela.innerHTML='';
+    
     for(var i=0;i<gastos.length;i++){
+
+        var vlPrev,vlTotRealizado ,vlSaldo =0;
+        if (gastos[i].valor_previsto != null)
+            vlPrev = gastos[i].valor_previsto.toFixed(2);
+        if (gastos[i].total_realizado != null)
+            vlTotRealizado = gastos[i].total_realizado.toFixed(2);
+        if (gastos[i].saldo != null)
+            vlSaldo = gastos[i].saldo.toFixed(2); 
+
         var trPrevisto=criaTrPrevisto(
             gastos[i].id
             ,gastos[i].descricao_previsto
-            ,gastos[i].valor_previsto.toFixed(2)
-            ,gastos[i].total_realizado.toFixed(2)
-            ,gastos[i].saldo.toFixed(2));            
+            ,vlPrev
+            ,vlTotRealizado
+            ,vlSaldo);            
         tabela.appendChild(trPrevisto);
     }
 }
 
-function populaTabelaDePrevistos(){
-    var tdNomePrevisto = document.querySelector("");
-}
-
 function criaTrPrevisto(id,nomeGasto,valorPrevisto,totalRealizado,saldo){
     var trPrevisto = document.createElement("tr");
-    //conteudos dos tds
+    
+    if(nomeGasto==null)
+        nomeGasto="";
     var inputNomePrevisto = montaInput("form-control","text","Digite o nome do gasto"
                                         ,"descricao","input-nome-previsto",nomeGasto,"");
     var hiddenId=montaInput("","hidden","","","hidden-id-previsto",id,"");
 
     var classesValor = ["form-control","monetario"];
     
+    if (valorPrevisto==null)
+        valorPrevisto="";
     var inputValorPrevisto = montaInput(classesValor,"text","Digite o valor previsto"
                                      ,"valor-previsto", "input-valor-previsto"
                                      ,mvalor(valorPrevisto.toString()),"" );
     inputValorPrevisto.addEventListener("blur",atualizaSaldoOnBlur);
     
+    if(totalRealizado==null)
+        totalRealizado="";
     var spanRealizado = montaSpan("total-realizado",mvalor(totalRealizado.toString()));
     
     var classes =["btn", "btn-default", "btnrealizado"];
