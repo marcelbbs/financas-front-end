@@ -26,6 +26,8 @@ adiciona.addEventListener("click", function(event){
     
     atualizaSaldoNaTela(saldo);
     
+    alteraGastoPrevisto(trGastoRealizado);          
+
     limpaRealizado();
 });
 

@@ -46,7 +46,7 @@ function criaTrPrevisto(id,nomeGasto,valorPrevisto,totalRealizado,saldo){
     var inputValorPrevisto = montaInput(classesValor,"text","Digite o valor previsto"
                                      ,"valor-previsto", "input-valor-previsto"
                                      ,mvalor(valorPrevisto.toString()),"" );
-    inputValorPrevisto.addEventListener("blur",atualizaSaldoOnBlur);
+    inputValorPrevisto.addEventListener("change",atualizaSaldoOnBlur);
     
     if(totalRealizado==null)
         totalRealizado="";

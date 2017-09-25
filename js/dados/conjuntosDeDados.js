@@ -17,6 +17,7 @@ function buscaGastoPorIdMock(id){
     return retorno;
 }
 
+
 function buscaGastoPorId(id){
     var elGasto;    
     gastos.forEach(function(gasto) {
@@ -118,12 +119,6 @@ function mockObtemGastosComMesAno(){
     return gastos ;     
 }
 
-
-function mockAtualizaSaldo(id,saldo){
-
-}
-
-
 function obtemGastos(mes,ano,usuario,callSuccess,callError){    
     if (!mock){
        var params="?mes=" +mes 
@@ -132,6 +127,36 @@ function obtemGastos(mes,ano,usuario,callSuccess,callError){
     }
     else   {
         var gastos = mockObtemGastosComMesAno();
+        console.log(gastos);
         callSuccess(gastos);
     }
 }
+
+function atualizaGastoPrevisto(id,nome,valor,realizado,saldo,callSuccess, callError){
+    console.log("atualizando gasto");
+    if(!mock){
+        var gastoPut = {
+            id:id,
+            descricao_previsto : nome,
+            valor_previsto : valor,
+            realizados:null,
+            total_realizado: realizado,
+            saldo: saldo,
+            mesAno: null 
+        }
+        urlObtemGastos +="/" + id;
+        doPut(urlObtemGastos,gastoPut,callSuccess,callError);
+    }else{
+        var gastoMock = buscaGastoPorIdMock(id);
+        gastoMock.id=id;
+
+        gastoMock.descricao_previsto= nome;
+        gastoMock.valor_previsto= valor;
+        gastoMock.total_realizado= realizado;
+        gastoMock.saldo= saldo;    
+        console.log(gastos);
+        callSuccess();        
+    }
+
+}
+

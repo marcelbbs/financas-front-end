@@ -1,6 +1,25 @@
 
 //arquivo de funções reutilizaveis
 
+//gerais
+function exibeMensagemAposHttp(msg){
+    if (msg==undefined){
+        console.log("Sucesso");
+    } else{
+        console.log("Erro");
+        alert(msg);
+    }
+}
+
+function exibeMensagemErroNoUl(ul,erros){    
+    erros.forEach(function(erro) {        
+        var li = document.createElement("li");
+        li.textContent = erro;
+        ul.appendChild(li);
+    });
+}
+
+//montagem de tela
 function montaTd(classe,valor){
     var td = document.createElement("td");
     if (classe.length!=0)
@@ -10,14 +29,6 @@ function montaTd(classe,valor){
     else
         td.appendChild( valor);
     return td;
-}
-
-function exibeMensagemErroNoUl(ul,erros){    
-    erros.forEach(function(erro) {        
-        var li = document.createElement("li");
-        li.textContent = erro;
-        ul.appendChild(li);
-    });
 }
 
 function montaInput(classe,tipo,placeholder,nome,id,valor,padrao){
@@ -82,6 +93,7 @@ function montaBotao(classe,dataToogle,dataTarget,titulo){
     return el;
 }
 
+//valores
 function mascara(o, f) {
     v_obj = o
     v_fun = f
@@ -160,4 +172,8 @@ function doGet(url,params,callSuccess,callError){
     url += params;
     console.log(url);
     doHttp("GET",url,params,callSuccess,callError);
+}
+
+function doPut(url,params,callSuccess,callError){
+    doHttp("PUT", url, params, callSuccess, callError);
 }

@@ -2,28 +2,32 @@ var botaoAddGasto = document.querySelector("#botao-add-gasto");
 
 botaoAddGasto.addEventListener("click",function(event){
     event.preventDefault();
-    var ultimoId = descobreUltimoId();
-    var gasto = {
+    var ultimoId = descobreUltimoId();      
+});
+
+function adicionaPrevisto(resp){
+/*    var gasto = {
         id:ultimoId,
         descricaoPrevisto : "",
         valorPrevisto : 0.00,
         realizados:[],
         totalRealizado: 0.0,
         saldo: 0.0,
-        mesAno: obtemMesAnoSelecionado()
-    }
+        mesAno: ()
+    }*/
+    var gasto = JSON.parse(resp.responseText);
     var tr = criaTrPrevisto(gasto.id,gasto.descricaoPrevisto
                         ,gasto.valorPrevisto,gasto.totalRealizado
                         ,gasto.saldo);
     gastos.push(gasto);
-    //realiza post
     adicionaGastoPrevisto(gasto.id);
     var tabela=document.querySelector("#tabela-gastos-previstos");
-    tabela.appendChild(tr);    
-});
+    tabela.appendChild(tr); 
+}
 
 function descobreUltimoId(){
-    return gastos.length;
+    var mesAnoSelecionado = obtemMesAnoSelecionado();
+    doPost(urlObtemGastos,mesAnoSelecionado,adicionaPrevisto,adicionaPrevistoErro);
 } 
 
 function obtemMesAnoSelecionado(){
@@ -31,6 +35,10 @@ function obtemMesAnoSelecionado(){
     var mesAnoArray=spanMesAno.split("/");
     var mesSel= descobreIndiceMes(mesAnoArray[0].trim()) +1;
     var anoSel= mesAnoArray[1].trim();
-    return mes.toString() +ano.toString();
+    mesAno={
+        mes = mes.toString(),
+        ano = ano.toString()
+    }
+    return mesAno;
 }
 
