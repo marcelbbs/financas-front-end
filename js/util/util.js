@@ -75,7 +75,7 @@ function montaSpan(id,valor){
     return el;
 }
 
-function montaBotao(classe,dataToogle,dataTarget,titulo){
+function montaBotao(classe,dataToogle,dataTarget,titulo,id){
     var el = document.createElement("button");
    
     classe.forEach(function(item){        
@@ -89,6 +89,9 @@ function montaBotao(classe,dataToogle,dataTarget,titulo){
     }
     if(titulo.length!=0){
         el.textContent=titulo;
+    }
+    if (id.length!=''){
+        el.id = id;
     }
     return el;
 }

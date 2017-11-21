@@ -54,20 +54,23 @@ function criaTrPrevisto(id,nomeGasto,valorPrevisto,totalRealizado,saldo){
     
     var classes =["btn", "btn-default", "btnrealizado"];
 
-    var btnAbreRealizado = montaBotao(classes,"modal","#myModal","+");
+    var btnAbreRealizado = montaBotao(classes,"modal","#myModal","+",'');
     var spanSaldo = montaSpan("saldo",mvalor(saldo.toString()));
+    var btnApagar = montaBotao(classes,'','','rem','btn-remove-gasto');
     //tds
     var tdNomeGasto = montaTd("col-md-4", inputNomePrevisto);
     var tdValorPrevisto = montaTd("col-md-2",inputValorPrevisto);   
     var tdRealizado = montaTd("col-md-2",spanRealizado);
     tdRealizado.appendChild(btnAbreRealizado);
     var tdSaldo = montaTd("col-md-2",spanSaldo);
+    var tdApagar = montaTd("col-md-2", btnApagar);
     
     trPrevisto.appendChild(hiddenId);  
     trPrevisto.appendChild(tdNomeGasto);    
     trPrevisto.appendChild(tdValorPrevisto);
     trPrevisto.appendChild(tdRealizado);
     trPrevisto.appendChild(tdSaldo);
+    trPrevisto.appendChild(tdApagar);
     
     trPrevisto.id = "previsto-e-realizado";
     return trPrevisto;
